@@ -108,7 +108,8 @@ exports.default = function (apiUrl) {
                             if (dic.relationships[key].data) {
                                 //if relationships have a data field --> assume id in data field
                                 interDic[keyString] = dic.relationships[key].data.id;
-                            } else if (dic.relationships[key].links) {
+                            }
+                            if (dic.relationships[key].links) {
                                 //if relationships have a link field
                                 var link = dic.relationships[key].links['self'];
                                 httpClient(link).then(function (response) {
