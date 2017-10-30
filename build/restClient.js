@@ -95,7 +95,8 @@ exports.default = function (apiUrl) {
      */
     var convertHTTPResponseToREST = function convertHTTPResponseToREST(response, type, resource, params) {
         var headers = response.headers,
-            json = response.json;
+            _response$json = response.json,
+            json = _response$json === undefined ? {} : _response$json;
 
         switch (type) {
             case _types.GET_MANY_REFERENCE:
