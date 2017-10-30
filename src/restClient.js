@@ -50,7 +50,7 @@ export default (apiUrl, httpClient = jsonApiHttpClient) => {
             url = `${apiUrl}/${resource}/${params.id}`;
             break;
         case GET_MANY:
-            const query = {'filter[simple][id]': params.ids.toString() };
+            const query = {'filter[id]': params.ids.toString() };
             url = `${apiUrl}/${resource}?${queryParameters(query)}`;
             break;
         case UPDATE:

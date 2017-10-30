@@ -57,7 +57,7 @@ exports.default = function (apiUrl) {
                 url = apiUrl + '/' + resource + '/' + params.id;
                 break;
             case _types.GET_MANY:
-                var _query = { 'filter[simple][id]': params.ids.toString() };
+                var _query = { 'filter[id]': params.ids.toString() };
                 url = apiUrl + '/' + resource + '?' + (0, _fetch.queryParameters)(_query);
                 break;
             case _types.UPDATE:
