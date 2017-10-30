@@ -85,7 +85,7 @@ export default (apiUrl, httpClient = jsonApiHttpClient) => {
      * @returns {Object} REST response
      */
     const convertHTTPResponseToREST = (response, type, resource, params) => {
-        const { headers, json } = response;
+        const { headers, json = {} } = response;
         switch (type) {
         case GET_MANY_REFERENCE:
         case GET_LIST:
