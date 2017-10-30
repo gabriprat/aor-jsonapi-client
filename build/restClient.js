@@ -39,11 +39,11 @@ exports.default = function (apiUrl) {
                     'page[limit]': perPage
                 };
                 Object.keys(params.filter).forEach(function (key) {
-                    var filterField = 'filter[' + key + ']';
+                    var filterField = 'filter[simple][' + key + ']';
                     _query[filterField] = params.filter[key];
                 });
                 if (type === 'GET_MANY_REFERENCE') {
-                    var targetFilter = 'filter[' + params.target + ']';
+                    var targetFilter = 'filter[simple][' + params.target + ']';
                     _query[targetFilter] = params.id;
                 }
                 if (order === 'ASC') {
@@ -57,7 +57,7 @@ exports.default = function (apiUrl) {
                 url = apiUrl + '/' + resource + '/' + params.id;
                 break;
             case _types.GET_MANY:
-                var _query = { 'filter[id]': params.ids.toString() };
+                var _query = { 'filter[simple][id]': params.ids.toString() };
                 url = apiUrl + '/' + resource + '?' + (0, _fetch.queryParameters)(_query);
                 break;
             case _types.UPDATE:
