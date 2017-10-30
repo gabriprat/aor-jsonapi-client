@@ -32,11 +32,11 @@ export default (apiUrl, httpClient = jsonApiHttpClient) => {
                 'page[limit]': perPage, 
             };
             Object.keys(params.filter).forEach(key =>{
-                var filterField = 'filter[' + key +']';
+                var filterField = 'filter[simple][' + key +']';
                 query[filterField] = params.filter[key];
             })
             if (type === 'GET_MANY_REFERENCE'){
-                const targetFilter = 'filter[' + params.target + ']';
+                const targetFilter = 'filter[simple][' + params.target + ']';
                 query[targetFilter] = params.id;
             }
             if (order === 'ASC'){
@@ -50,7 +50,7 @@ export default (apiUrl, httpClient = jsonApiHttpClient) => {
             url = `${apiUrl}/${resource}/${params.id}`;
             break;
         case GET_MANY:
-            const query = {'filter[id]': params.ids.toString() };
+            const query = {'filter[simple][id]': params.ids.toString() };
             url = `${apiUrl}/${resource}?${queryParameters(query)}`;
             break;
         case UPDATE:
