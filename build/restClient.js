@@ -4,11 +4,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /* eslint-disable */
+
+
 var _types = require('./types');
 
 var _fetch = require('./fetch');
 
-/* eslint-disable */
 exports.default = function (apiUrl) {
     var httpClient = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _fetch.jsonApiHttpClient;
 
@@ -40,7 +42,12 @@ exports.default = function (apiUrl) {
                 };
                 Object.keys(params.filter).forEach(function (key) {
                     var filterField = 'filter[simple][' + key + ']';
-                    _query[filterField] = params.filter[key];
+                    if (_typeof(params.filter[key]) === 'object' && params.filter[key].regEx) {
+                        filterField += '[regEx]';
+                        _query[filterField] = params.filter[key].regEx;
+                    } else {
+                        _query[filterField] = params.filter[key];
+                    }
                 });
                 if (type === 'GET_MANY_REFERENCE') {
                     var targetFilter = 'filter[simple][' + params.target + ']';

@@ -33,7 +33,12 @@ export default (apiUrl, httpClient = jsonApiHttpClient) => {
             };
             Object.keys(params.filter).forEach(key =>{
                 var filterField = 'filter[simple][' + key +']';
-                query[filterField] = params.filter[key];
+                if (typeof params.filter[key] === 'object' && params.filter[key].regEx) {
+                  filterField += '[regEx]';
+                  query[filterField] = params.filter[key].regEx;
+                } else {
+                  query[filterField] = params.filter[key];
+                }
             })
             if (type === 'GET_MANY_REFERENCE'){
                 const targetFilter = 'filter[simple][' + params.target + ']';
