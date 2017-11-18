@@ -42,9 +42,9 @@ exports.default = function (apiUrl) {
                 };
                 Object.keys(params.filter).forEach(function (key) {
                     var filterField = 'filter[simple][' + key + ']';
-                    if (_typeof(params.filter[key]) === 'object' && params.filter[key].regEx) {
-                        filterField += '[regEx]';
-                        _query[filterField] = params.filter[key].regEx;
+                    if (_typeof(params.filter[key]) === 'object' && params.filter[key].$regex) {
+                        filterField += '[$regex]';
+                        _query[filterField] = params.filter[key].$regex;
                     } else {
                         _query[filterField] = params.filter[key];
                     }

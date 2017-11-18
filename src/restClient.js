@@ -33,9 +33,9 @@ export default (apiUrl, httpClient = jsonApiHttpClient) => {
             };
             Object.keys(params.filter).forEach(key =>{
                 var filterField = 'filter[simple][' + key +']';
-                if (typeof params.filter[key] === 'object' && params.filter[key].regEx) {
-                  filterField += '[regEx]';
-                  query[filterField] = params.filter[key].regEx;
+                if (typeof params.filter[key] === 'object' && params.filter[key].$regex) {
+                  filterField += '[$regex]';
+                  query[filterField] = params.filter[key].$regex;
                 } else {
                   query[filterField] = params.filter[key];
                 }
